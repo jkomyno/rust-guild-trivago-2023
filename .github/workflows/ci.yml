@@ -1,0 +1,90 @@
+name: CI workflow
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  WASM_BINDGEN_VERSION: 0.2.84
+
+jobs:
+  rust-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./rust
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.68.2
+          targets: wasm32-unknown-unknown
+          components: rustfmt, clippy
+      
+      - name: Install additional Rust components
+        run: |
+          cargo install -f wasm-bindgen-cli@$WASM_BINDGEN_VERSION
+
+      - name: Set up cargo cache
+        uses: actions/cache@v3
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            rust/target/            
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Lint
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy -- -D warnings
+  
+      - name: Install cargo check tools
+        run: |
+          cargo install --locked cargo-outdated || true
+          cargo install --locked cargo-audit || true
+          cargo install --locked cargo-pants || true
+          
+      - name: Check dependencies
+        run: |
+          cargo outdated --exit-code 1
+          rm -rf ~/.cargo/advisory-db
+          cargo audit
+          cargo pants
+        
+      - name: Test
+        run: cargo test
+
+  rust-docker:
+    needs: [rust-check]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: 'amd64'
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Run Docker (test Wasm + Node.js)
+        run: |
+          chmod +x ./build.sh
+          DOCKER_PLATFORM=linux/amd64 ./build.sh
