@@ -50,7 +50,7 @@ mod tests {
     let result = to_uppercase("".to_owned());
     assert_eq!(result, "".to_owned());
 
-    let result = to_uppercase("Node Congress".to_owned());
-    assert_eq!(result, "NODE CONGRESS".to_owned());
+    let result = to_uppercase("Rust Guild Trivago".to_owned());
+    assert_eq!(result, "RUST GUILD TRIVAGO".to_owned());
   }
 }

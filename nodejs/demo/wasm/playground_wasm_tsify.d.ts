@@ -170,15 +170,11 @@ export interface MatrixDataI32 {
     data: number[][];
 }
 
-export type MatrixDataI32 = MatrixData<number>;
-
 export interface MatrixData<T> {
     data: T[][];
 }
 
 export type VecBool = VecData<boolean>;
-
-export type VecString = VecData<string>;
 
 export interface VecData<T> {
     data: T[];

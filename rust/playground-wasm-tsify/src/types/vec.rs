@@ -32,9 +32,6 @@ pub struct VecData<T> {
 }
 
 #[declare]
-pub type VecString = VecData<String>;
-
-#[declare]
 pub type VecBool = VecData<bool>;
 
 #[derive(Serialize, Deserialize, Tsify)]
@@ -42,6 +39,3 @@ pub type VecBool = VecData<bool>;
 pub struct MatrixData<T> {
   pub data: Vec<Vec<T>>,
 }
-
-#[declare]
-pub type MatrixDataI32 = MatrixData<i32>;

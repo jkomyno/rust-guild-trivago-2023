@@ -55,7 +55,7 @@ describe('playground-wasm-bindgen', () => {
       })
 
       test('either_to_string_with_invalid_input', () => {
-        // @ts-expect-error
+        // @ts-expect-error: invalid input type
         expect(() => wasm.either_to_string('ok')).toThrow('`unwrap_throw` failed')
       })
 
@@ -71,7 +71,7 @@ describe('playground-wasm-bindgen', () => {
     describe('String (utf-8) in Rust is string (utf-16) in TS', () => {
       test('get_string_length', () => {
         expect(wasm.get_string_length('')).toEqual(0)
-        expect(wasm.get_string_length('Node Congress')).toEqual(13)
+        expect(wasm.get_string_length('Rust Guild Trivago')).toEqual(18)
   
         const stringWithEmoji = 'lol🚀'
         expect(wasm.get_string_length(stringWithEmoji)).toEqual(7)
@@ -79,7 +79,7 @@ describe('playground-wasm-bindgen', () => {
       })
 
       test('to_uppercase', () => {
-        expect(wasm.to_uppercase('Node Congress')).toEqual('NODE CONGRESS')
+        expect(wasm.to_uppercase('Rust Guild Trivago')).toEqual('RUST GUILD TRIVAGO')
       })
     })
 
