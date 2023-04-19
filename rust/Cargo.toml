@@ -1,0 +1,32 @@
+[workspace]
+members = [
+  "playground-wasm-panic",
+  "playground-wasm-bindgen",
+  "playground-serde-wasm-bindgen",
+  "playground-wasm-panic",
+  "playground-wasm-tsify",
+  "playground-wasm-io",
+  "schema-parser",
+  "schema-parser-wasm",
+]
+
+[workspace.dependencies]
+serde_json = { version = "1", features = ["preserve_order"] }
+serde = { version = "1", features = ["derive"] }
+serde-wasm-bindgen = { version = "0.5.0" }
+tsify = { version = "0.4.3", features = ["js"] }
+wasm-bindgen = { version = "0.2.84" }
+
+[profile.release]
+lto = "fat" # attempt to perform optimizations across all crates within the dependency graph.
+codegen-units = 1 # more code generation units allows more of a crate to be processed in parallel possibly reducing compile time, but may produce slower code.
+opt-level = 's' # optimize for size.
+strip = "symbols" # strip symbols from the artifact, reducing its size.
+
+[profile.release.package.playground-wasm-panic]
+opt-level = 0
+strip = "none"
+
+[profile.profiling]
+inherits = "release"
+debug = true
