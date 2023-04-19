@@ -15,7 +15,3 @@ pub mod string;
 
 // exports the public members of `./types/vec.rs`
 pub mod vec;
-
-// exports the public members of `./functions/unsupported.rs`
-// Note: uncomment the next line to see the compilation error messages
-// pub mod unsupported;

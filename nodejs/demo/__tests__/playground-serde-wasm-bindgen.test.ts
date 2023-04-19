@@ -74,13 +74,11 @@ describe('playground-serde-wasm-bindgen', () => {
     test('Result<i32, String> in Rust returns a number or throws a string in TS', async () => {
       expect(wasm.inc_or_fail(1)).toEqual(2)
 
-      await expect(toPromise(() => wasm.inc_or_fail(undefined)))
-        .rejects.toThrow('No value!')
-
       try {
         wasm.inc_or_fail(undefined)
       } catch (e) {
-        expect(typeof(e)).toEqual('string') // not Error
+        expect(typeof(e)).toEqual('string') // not an error Error
+        expect(e).toEqual('No value!')
       }
     })
 
