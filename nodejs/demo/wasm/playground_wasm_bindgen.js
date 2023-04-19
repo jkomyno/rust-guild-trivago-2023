@@ -57,7 +57,7 @@ module.exports.enum_to_string = function(provider) {
         return getStringFromWasm0(r0, r1);
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
-        wasm.__wbindgen_export_0(r0, r1);
+        wasm.__wbindgen_free(r0, r1);
     }
 };
 
@@ -137,7 +137,7 @@ function takeObject(idx) {
 module.exports.enum_from_string = function(label) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passStringToWasm0(label, wasm.__wbindgen_export_1, wasm.__wbindgen_export_2);
+        const ptr0 = passStringToWasm0(label, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.enum_from_string(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
@@ -299,7 +299,7 @@ module.exports.get_key_length = function(params) {
 * @returns {number}
 */
 module.exports.get_string_length = function(x) {
-    const ptr0 = passStringToWasm0(x, wasm.__wbindgen_export_1, wasm.__wbindgen_export_2);
+    const ptr0 = passStringToWasm0(x, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.get_string_length(ptr0, len0);
     return ret >>> 0;
@@ -327,7 +327,7 @@ module.exports.get_string_length_from_params = function(x) {
 module.exports.toUpperCase = function(x) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passStringToWasm0(x, wasm.__wbindgen_export_1, wasm.__wbindgen_export_2);
+        const ptr0 = passStringToWasm0(x, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.toUpperCase(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
@@ -335,7 +335,7 @@ module.exports.toUpperCase = function(x) {
         return getStringFromWasm0(r0, r1);
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
-        wasm.__wbindgen_export_0(r0, r1);
+        wasm.__wbindgen_free(r0, r1);
     }
 };
 
@@ -352,7 +352,7 @@ module.exports.n_to_string = function(n) {
         return getStringFromWasm0(r0, r1);
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
-        wasm.__wbindgen_export_0(r0, r1);
+        wasm.__wbindgen_free(r0, r1);
     }
 };
 
@@ -378,7 +378,7 @@ function passArray32ToWasm0(arg, malloc) {
 * @returns {number}
 */
 module.exports.get_u32_array_length = function(x) {
-    const ptr0 = passArray32ToWasm0(x, wasm.__wbindgen_export_1);
+    const ptr0 = passArray32ToWasm0(x, wasm.__wbindgen_malloc);
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.get_i32_array_length(ptr0, len0);
     return ret >>> 0;
@@ -391,7 +391,7 @@ module.exports.get_u32_array_length = function(x) {
 * @returns {number}
 */
 module.exports.get_i32_array_length = function(x) {
-    const ptr0 = passArray32ToWasm0(x, wasm.__wbindgen_export_1);
+    const ptr0 = passArray32ToWasm0(x, wasm.__wbindgen_malloc);
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.get_i32_array_length(ptr0, len0);
     return ret >>> 0;
@@ -509,7 +509,7 @@ class NumericArrays {
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             var v0 = getArrayI32FromWasm0(r0, r1).slice();
-            wasm.__wbindgen_export_0(r0, r1 * 4);
+            wasm.__wbindgen_free(r0, r1 * 4);
             return v0;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -520,7 +520,7 @@ class NumericArrays {
     * @param {Int32Array} arg0
     */
     set int32(arg0) {
-        const ptr0 = passArray32ToWasm0(arg0, wasm.__wbindgen_export_1);
+        const ptr0 = passArray32ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_numericarrays_int32(this.ptr, ptr0, len0);
     }
@@ -535,7 +535,7 @@ class NumericArrays {
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             var v0 = getArrayU32FromWasm0(r0, r1).slice();
-            wasm.__wbindgen_export_0(r0, r1 * 4);
+            wasm.__wbindgen_free(r0, r1 * 4);
             return v0;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -546,7 +546,7 @@ class NumericArrays {
     * @param {Uint32Array} arg0
     */
     set uint32(arg0) {
-        const ptr0 = passArray32ToWasm0(arg0, wasm.__wbindgen_export_1);
+        const ptr0 = passArray32ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_numericarrays_uint32(this.ptr, ptr0, len0);
     }
@@ -561,7 +561,7 @@ class NumericArrays {
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             var v0 = getArrayU64FromWasm0(r0, r1).slice();
-            wasm.__wbindgen_export_0(r0, r1 * 8);
+            wasm.__wbindgen_free(r0, r1 * 8);
             return v0;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -572,7 +572,7 @@ class NumericArrays {
     * @param {BigUint64Array} arg0
     */
     set uint64(arg0) {
-        const ptr0 = passArray64ToWasm0(arg0, wasm.__wbindgen_export_1);
+        const ptr0 = passArray64ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_numericarrays_uint64(this.ptr, ptr0, len0);
     }
@@ -587,7 +587,7 @@ class NumericArrays {
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             var v0 = getArrayI64FromWasm0(r0, r1).slice();
-            wasm.__wbindgen_export_0(r0, r1 * 8);
+            wasm.__wbindgen_free(r0, r1 * 8);
             return v0;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -598,7 +598,7 @@ class NumericArrays {
     * @param {BigInt64Array} arg0
     */
     set int64(arg0) {
-        const ptr0 = passArray64ToWasm0(arg0, wasm.__wbindgen_export_1);
+        const ptr0 = passArray64ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_numericarrays_int64(this.ptr, ptr0, len0);
     }
@@ -613,7 +613,7 @@ class NumericArrays {
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             var v0 = getArrayF32FromWasm0(r0, r1).slice();
-            wasm.__wbindgen_export_0(r0, r1 * 4);
+            wasm.__wbindgen_free(r0, r1 * 4);
             return v0;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -624,7 +624,7 @@ class NumericArrays {
     * @param {Float32Array} arg0
     */
     set float(arg0) {
-        const ptr0 = passArrayF32ToWasm0(arg0, wasm.__wbindgen_export_1);
+        const ptr0 = passArrayF32ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_numericarrays_float(this.ptr, ptr0, len0);
     }
@@ -639,7 +639,7 @@ class NumericArrays {
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             var v0 = getArrayF64FromWasm0(r0, r1).slice();
-            wasm.__wbindgen_export_0(r0, r1 * 8);
+            wasm.__wbindgen_free(r0, r1 * 8);
             return v0;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -650,7 +650,7 @@ class NumericArrays {
     * @param {Float64Array} arg0
     */
     set double(arg0) {
-        const ptr0 = passArrayF64ToWasm0(arg0, wasm.__wbindgen_export_1);
+        const ptr0 = passArrayF64ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_numericarrays_double(this.ptr, ptr0, len0);
     }
@@ -842,7 +842,7 @@ class StringParams {
             return getStringFromWasm0(r0, r1);
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
-            wasm.__wbindgen_export_0(r0, r1);
+            wasm.__wbindgen_free(r0, r1);
         }
     }
     /**
@@ -850,7 +850,7 @@ class StringParams {
     * @param {string} arg0
     */
     set id(arg0) {
-        const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_export_1, wasm.__wbindgen_export_2);
+        const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.__wbg_set_stringparams_id(this.ptr, ptr0, len0);
     }

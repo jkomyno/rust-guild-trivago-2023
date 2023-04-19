@@ -21,7 +21,7 @@ wasm-bindgen = { version = "0.2.84" }
 lto = "fat" # attempt to perform optimizations across all crates within the dependency graph.
 codegen-units = 1 # more code generation units allows more of a crate to be processed in parallel possibly reducing compile time, but may produce slower code.
 opt-level = 's' # optimize for size.
-strip = "symbols" # strip symbols from the artifact, reducing its size.
+strip = "none"
 
 [profile.release.package.playground-wasm-panic]
 opt-level = 0

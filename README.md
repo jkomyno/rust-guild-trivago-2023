@@ -330,16 +330,16 @@ We have 3 predefined example schemas:
     Validating AST...
 
     [node:panic] RuntimeError: unreachable
-        at wasm://wasm/0009a75e:wasm-function[674]:0x2265d
-        at wasm://wasm/0009a75e:wasm-function[460]:0x216ba
-        at wasm://wasm/0009a75e:wasm-function[237]:0x1b3e6
-        at wasm://wasm/0009a75e:wasm-function[284]:0x1d738
-        at wasm://wasm/0009a75e:wasm-function[445]:0x21403
-        at wasm://wasm/0009a75e:wasm-function[374]:0x200f2
-        at wasm://wasm/0009a75e:wasm-function[426]:0x21015
-        at wasm://wasm/0009a75e:wasm-function[91]:0xf7e5
-        at wasm://wasm/0009a75e:wasm-function[98]:0x1064d
-        at wasm://wasm/0009a75e:wasm-function[269]:0x1cc7b
+        at __rust_start_panic (wasm://wasm/000d20ce:wasm-function[683]:0x22a6f)
+        at rust_panic (wasm://wasm/000d20ce:wasm-function[467]:0x21ab0)
+        at std::panicking::rust_panic_with_hook::hc53aea0352e77326 (wasm://wasm/000d20ce:wasm-function[239]:0x1b5e4)
+        at std::panicking::begin_panic_handler::{{closure}}::ha183a8279614f03a (wasm://wasm/000d20ce:wasm-function[287]:0x1da05)
+        at std::sys_common::backtrace::__rust_end_short_backtrace::hc33870f333461503 (wasm://wasm/000d20ce:wasm-function[452]:0x217f9)
+        at rust_begin_unwind (wasm://wasm/000d20ce:wasm-function[378]:0x20418)
+        at core::panicking::panic_fmt::hf4a9df75710ece83 (wasm://wasm/000d20ce:wasm-function[432]:0x213d5)
+        at schema_parser::validate::validator::validate_url::hccce9a449abc9a6c (wasm://wasm/000d20ce:wasm-function[91]:0xf7f0)
+        at schema_parser::validate::validator::validate_configuration::hfdcd6b1140d3585d (wasm://wasm/000d20ce:wasm-function[98]:0x10658)
+        at schema_parser::validate_ast::h07d68e260ec8db67 (wasm://wasm/000d20ce:wasm-function[272]:0x1cf48)
     ```
 
     As we can see, the panic is bubbled up to Node.js, which prints the panic message and stacktrace (although that's not particularly informative, as it always returns `unreachable`).
