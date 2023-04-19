@@ -1,0 +1,2 @@
+You are reading I/O from WebAssembly!
+$ € 𐐷 𤭢
