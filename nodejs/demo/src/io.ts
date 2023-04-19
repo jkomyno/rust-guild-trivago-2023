@@ -8,7 +8,7 @@ const readFile = (filename: string): Promise<String> => {
 async function main() {
   const packageContent = await call_async_fn(readFile, './io.txt')
   console.log()
-  console.log('[node] package.json content:', packageContent)
+  console.log('[node] File content:', packageContent)
 }
 
 main()

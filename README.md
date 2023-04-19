@@ -432,7 +432,7 @@ We expect the following output:
 $ € 𐐷 𤭢
 ")
 
-[node] package.json content: You are reading I/O from WebAssembly!
+[node] File content: You are reading I/O from WebAssembly!
 $ € 𐐷 𤭢
 ```
 
